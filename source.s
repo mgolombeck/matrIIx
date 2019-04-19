@@ -1,18 +1,36 @@
-MAIN
+*
+*
+* loop forever
+*
+MAIN		INC	RND				; a bit more randomness...
+		INC	RND2
+		INC	RND3
 		LDA	bMark
 		BNE	mark2
-mark1		JSR	DisplayMatrix
-		LDA	KYBD				; loop until keypress
-		BMI 	END
-		JSR	DisplayGuys
-		LDA	KYBD				; loop until keypress
-		BMI 	END
+mark1		LDA	#$20
+		STA	ora1+1
+		LDA	#$40
+		STA	ora2+1			
 		JSR	DisplayMatrix
 		LDA	KYBD				; loop until keypress
 		BMI 	END
-		JSR	DisplayGuys
+		LDA	#$60
+		STA	ora1+1
+		JSR	DisplayMatrix
 		LDA	KYBD				; loop until keypress
 		BMI 	END
+		LDA	#$20
+		STA	ora1+1
+		JSR	DisplayMatrix
+		LDA	KYBD				; loop until keypress
+		BMI 	END
+		LDA	#$60
+		STA	ora1+1
+		JSR	DisplayMatrix
+		LDA	KYBD				; loop until keypress
+		BMI 	END
+		LDA	#$20
+		STA	ora1+1
 		JSR	DisplayMatrix
 		LDA	KYBD				; loop until keypress
 		BMI 	END
@@ -26,6 +44,23 @@ mark2		JSR	DisplayRF
 		LDA	KYBD				; loop until keypress
 		BMI 	END
 		JMP	MAIN
+*										
+END		SEI					; stop interrupts
+		LDA	STROBE
+		JSR	CLEAR_RIGHT
+		JSR	CLEAR_LEFT
+		JSR	RESET_RIGHT			; mute Mockingboard
+		JSR	RESET_LEFT
+		;BIT	$C404
+		STA	$C002
+		STA	$C004
+		STA 	$C051      			; SWITCH TO TEXT -> end of program
+        	STA 	$C052
+        	STA 	$C054
+          	LDA	READROM				; switch of LC
+          	JSR	$FB39				; command TEXT
+		JSR	HOME
+		JMP	$fa62				; reset
 *
 DisplayMatrix
 
