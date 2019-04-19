@@ -1,5 +1,29 @@
 *
 *
+* code rain & HIRES swipe variables
+*
+RND		EQU	$68				; random number
+RND2		EQU	$69
+RND3		EQU	$54
+Abs          	EQU	$55       			; X-pos of active code rain (0-39)
+Ordo         	EQU	$56       			; Y-pos of active code rain (0-191)
+iChar        	EQU	$57       			; index of the current display line (0-6)
+IndexChar    	EQU	$58       			; index of character to display (0-xx)
+IndexCol    	EQU	$59       			; column progress index (0-39)
+Speed       	EQU	$5A       			; current display column speed
+Counter     	EQU	$5B       			; counter of coluns to change per VBL-sync (x max)
+Temp        	EQU	$5C       			; (any)
+Temp2       	EQU	$5D
+CursorPos   	EQU	$5E ;+$5F 			; cursor-position Y (offset) 
+CursorX     	EQU	$60     			; cursor-position X 
+CursorCar  	EQU	$61       			; current cursor character ($20 or $00 = displayed/lit)
+Temp3      	EQU	$62
+Count2      	EQU	$63
+NUMBER     	EQU	$64
+Count3      	EQU	$65
+
+*
+*
 * loop forever
 *
 MAIN		INC	RND				; a bit more randomness...
