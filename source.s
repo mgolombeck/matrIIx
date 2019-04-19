@@ -1,3 +1,4 @@
+; -----------------------------------------------------------------------------
 *
 *
 * code rain & HIRES swipe variables
@@ -21,7 +22,7 @@ Temp3      	EQU	$62
 Count2      	EQU	$63
 NUMBER     	EQU	$64
 Count3      	EQU	$65
-
+; -----------------------------------------------------------------------------
 *
 *
 * loop forever
@@ -85,6 +86,7 @@ END		SEI					; stop interrupts
           	JSR	$FB39				; command TEXT
 		JSR	HOME
 		JMP	$fa62				; reset
+; -----------------------------------------------------------------------------
 *
 *
 *	HIRES screen swipe
@@ -149,6 +151,7 @@ s2b     	INC 	Counter				; check for new VBL-signal after processing 15 columns!
         
 go1b    	STZ 	Counter				; reset VBL-counter
         	JMP 	BPb
+; -----------------------------------------------------------------------------
 *
 *
 * control code rainfall display
@@ -185,7 +188,7 @@ BP5     	JSR 	WAITVBL
         	BNE 	BP5
         
 RF_RTS		RTS
-* ============================================================
+; -----------------------------------------------------------------------------
 *
 * short waiting routine
 *
@@ -196,7 +199,7 @@ sWAITlp		JSR	WAIT
 		DEX
 		BPL	sWAITlp
 		RTS					
-* ============================================================
+; -----------------------------------------------------------------------------
 *
 * display rainfall
 *
